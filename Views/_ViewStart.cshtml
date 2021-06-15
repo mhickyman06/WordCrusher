@@ -1,0 +1,9 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<SchoolsApplicationUser> signinmanger;
+
+@{
+    if( signinmanger.IsSignedIn(User) && User.IsInRole(StudentProject.Models.SeedRoles.ConstantRoles.School))
+    {
+        Layout = "_SchoolPortalLayout";
+    }
+    
+}

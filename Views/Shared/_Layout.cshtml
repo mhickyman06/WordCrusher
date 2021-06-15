@@ -1,0 +1,263 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<SchoolsApplicationUser> signinmanger;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StudentProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Custom.css" />
+    <link rel="stylesheet" href="~/css/Custom1.css" />
+    <link rel="stylesheet" href="~/css/CustomStyle1.css" />
+    <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" href="~/css/Slick.css" />
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free-5.13.0-web/css/all.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free-5.13.0-web/css/brands.css" />
+    <link rel="icon" href="~/lib/fontawesome-free-5.13.0-web/svgs/brands" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <style>
+        .custom-nav-link {
+            text-decoration: none;
+            margin-left: 20px;
+            color: black;
+        }
+
+
+        .custom-nav-link:active {
+            color: #ff6a00;
+        }
+
+        .custom-nav-link:hover {
+            text-decoration: none;
+            color: #ff6a00;
+        }
+
+        .nav-item
+        .help-icon {
+            margin-left: 10px;
+        }
+
+        .tw-i {
+            width: 25px;
+            height: 25px;
+            padding-top: 10px;
+            color: #ff6a00;
+        }
+
+        .sub-menu-1 {
+            display: none;
+            margin-top: 2px;
+        }
+
+        .divs:hover .sub-menu-1 {
+            display: block;
+            margin-bottom: 0;
+            margin-left: -15px;
+        }
+
+        .dropdown-item {
+            padding-left: 50px;
+            padding-right: 50px;
+            margin-left: 0px;
+        }
+        .footer {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            top: 1300px;
+        }
+
+        .header-adds {
+            width: 100%;
+            height: 60px;
+        }
+
+        .sub-nav {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .sub-nav1:hover .sub-nav {
+            visibility: visible;
+            opacity: 3;
+        }
+
+        .mean-container .mean-bar {
+            background: #ffc221;
+        }
+
+        .site-navigation ul li a {
+            line-height: 0;
+        }
+
+        .site-navigation ul li a:hover, .site-navigation ul li.current-menu-item a {
+            border-top: 3px solid #ff6a00;
+            color: #ff4800;
+        }
+
+        .top-header-bar {
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .top_head_btn {
+            background-color: #cebc8f;
+            padding: 7px 41px !important;
+            /*margin-top: 10px;*/
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+     
+    </style>
+
+</head>
+<!--Header Section-->
+<!--moving news-->
+<body class="main-layout">
+    @*loader*@
+    @*<div class="loader_bg">
+            <div class="loader"><img src="~/images/loading.gif" alt="#" /></div>
+        </div>*@
+    @*end loader*@
+    <!-- header -->
+    <header style="border-bottom:solid 2px #e0d6cc">
+        @*<div class="header-adds container-fluid" style="padding-bottom:0px;padding-top:0px">
+
+        </div>*@
+        <!-- header inner -->
+        <div class="header" style="padding-bottom:0px;padding-top:0px">
+            <div style="background-color:#ffc221">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="top-box">
+                                <ul class="sociel_link">
+                                    <li> <a href="#"><img class="tw-i" src="~/lib/fontawesome-free-5.13.0-web/svgs/brands/twitter.svg" /></a></li>
+                                    <li> <a href="#"><img class="tw-i" src="~/lib/fontawesome-free-5.13.0-web/svgs/brands/facebook.svg" /></a></li>
+                                    <li> <a href="#"><img class="tw-i" src="~/lib/fontawesome-free-5.13.0-web/svgs/brands/instagram.svg" /></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                            <div class="row mt-3 mb-2">
+                                @{
+                                    if (signinmanger.IsSignedIn(User))
+                                    {
+
+                                        <div class="col-6">
+                                            <form method="post" asp-action="Logout" asp-controller="Account">
+                                                <button type="submit" class="top_head_btn">Logout</button>
+                                            </form>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        @*<li class="nav-item">
+                                                <a class="custom-nav-link" asp-action="Login" asp-controller="Account">
+                                                    <span class="icons"><i class="fa fa-newspaper" aria-hidden="true"></i></span>
+                                                    <span class="link-txt">Login</span>
+                                                </a>
+                                            </li>*@
+                                        <div class="col-6">
+                                            <a class="top_head_btn ml-2" asp-action="Login" asp-controller="Account">Login</a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="top_head_btn ml-1" asp-action="RegisterSchool" asp-controller="Account">Enroll</a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section pl-0">
+                        <div class="full">
+                            <div class="center-desk">
+                                <h1 style="text-align:center;margin-top:20px">Word<span style="color:#ffc221; margin-bottom:30px">Crusher</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9 ">
+                        <div class="menu-area">
+                            <div class="limit-box">
+                                <nav class="main-menu">
+                                    <ul class="menu-area-main">
+                                        <li class="active"> <a asp-controller="Home" asp-action="Index">Home</a> </li>
+                                        <li> <a asp-action="SchoolsPage" asp-controller="School">Schools</a> </li>
+                                        <li> <a asp-action="Parents" asp-controller="Home">Parents</a> </li>
+                                        <li> <a asp-action="Sponsors" asp-controller="Home">Sponsors</a> </li>
+                                        <li> <a asp-action="Faq" asp-controller="Home">FAQ</a> </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sliding-news">
+                    <marquee behavior="" direction="">
+                        <h6 style="color:#ffc221;padding-top:5px">
+                            Hello world hello world hello world hello worldhello world hello world hello world hello world hello world hello world hello world hello world hello world
+                            hello world hello world hello world
+                        </h6>
+                    </marquee>
+                </div>
+            </div>
+            <!-- end header inner -->
+        </div>
+    </header>
+    <!-- carousel section-->
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top  text-muted">
+        <div class="container">
+            &copy; 2021 - StudentProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery-3.0.0.min.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/custom1.js"></script>
+    <script src="~/js/Custom.js"></script>
+    @*<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+
+    </script>
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", true);
+    }
+</body>
+</html>
