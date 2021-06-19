@@ -193,20 +193,21 @@ namespace StudentProject.Controllers
 
 
 
-                var result1 = await _userManager.CreateAsync(schoolapplicationuser, registerSpellerViewModel.ConfirmPassword);
 
 
                 if (!await _roleManager.RoleExistsAsync(ConstantRoles.Spellers))
                     await _roleManager.CreateAsync(new IdentityRole { Name = ConstantRoles.Spellers });
 
-                if (await _roleManager.RoleExistsAsync(ConstantRoles.Spellers))
-                {
-                    await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.Spellers);
-                }
+                // if (await _roleManager.RoleExistsAsync(ConstantRoles.Spellers))
+                // {
+                //     await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.Spellers);
+                // }
 
+                var result1 = await _userManager.CreateAsync(schoolapplicationuser, registerSpellerViewModel.ConfirmPassword);
 
                 if (result1.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.Spellers);
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(schoolapplicationuser);
                     var confirmationLink = Url.Action("ConfirmEmail",controller:"Account",
                          new { token, email = schoolapplicationuser.Email }, Request.Scheme);

@@ -147,20 +147,21 @@ namespace StudentProject.Controllers
                 _context.localGovtSchools.Add(SchoollocalGovt);
                 await _context.SaveChangesAsync();
 
-                var result1 = await _userManager.CreateAsync(schoolapplicationuser, registerViewModel.ConfirmSchoolPassword);
 
 
                 if (!await _roleManager.RoleExistsAsync(ConstantRoles.School))
                     await _roleManager.CreateAsync(new IdentityRole { Name = ConstantRoles.School });
 
-                if (await _roleManager.RoleExistsAsync(ConstantRoles.School))
-                {
-                    await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.School);
-                }
+                // if (await _roleManager.RoleExistsAsync(ConstantRoles.School))
+                // {
+                //     await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.School);
+                // }
 
+                var result1 = await _userManager.CreateAsync(schoolapplicationuser, registerViewModel.ConfirmSchoolPassword);
 
                 if (result1.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(schoolapplicationuser, ConstantRoles.School);
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(schoolapplicationuser);
                     var confirmationLink = Url.Action(nameof(ConfirmEmail),
                         "Account", new { token, email = schoolapplicationuser.Email }, Request.Scheme);
